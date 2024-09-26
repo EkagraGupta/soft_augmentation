@@ -68,6 +68,7 @@ def train(epoch):
     net.train()
     loss_temp = 0
     count = 0
+    running_loss = 0.0
     if args.loss == 'ols':
         loss_function.train()
     for batch_index, (images, labels) in enumerate(cifar_training_loader):
@@ -99,21 +100,24 @@ def train(epoch):
 
         n_iter = (epoch - 1) * len(cifar_training_loader) + batch_index + 1
 
-        print('Training Epoch: {epoch} [{trained_samples}/{total_samples}]\tLoss: {:0.4f}\tLR: {:0.6f}'.format(
-            loss.item(),
-            optimizer.param_groups[0]['lr'],
-            epoch=epoch,
-            trained_samples=batch_index * args.b + len(images),
-            total_samples=len(cifar_training_loader.dataset)
-        ))
+        # print('Training Epoch: {epoch} [{trained_samples}/{total_samples}]\tLoss: {:0.4f}\tLR: {:0.6f}'.format(
+        #     loss.item(),
+        #     optimizer.param_groups[0]['lr'],
+        #     epoch=epoch,
+        #     trained_samples=batch_index * args.b + len(images),
+        #     total_samples=len(cifar_training_loader.dataset)
+        # ))
         loss_temp += loss.item()
         count += 1
 
+        running_loss += loss.item()
+
+    running_loss /= len(cifar_training_loader)
     writer.add_scalar('Train/loss', loss_temp/count, epoch)
 
     finish = time.time()
 
-    print('epoch {} training time consumed: {:.2f}s'.format(epoch, finish - start))
+    print('epoch {}, Loss: {}, training time consumed: {:.2f}s'.format(epoch, loss, finish - start))
 
 @torch.no_grad()
 def eval_training(dataloader=None, train=False, epoch=None):
