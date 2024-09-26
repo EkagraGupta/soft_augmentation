@@ -117,7 +117,7 @@ def train(epoch):
 
     finish = time.time()
 
-    print('epoch {}, Loss: {}, training time consumed: {:.2f}s'.format(epoch, loss, finish - start))
+    print('epoch {}, Loss: {}, training time consumed: {:.2f}s'.format(epoch, running_loss, finish - start))
 
 @torch.no_grad()
 def eval_training(dataloader=None, train=False, epoch=None):
