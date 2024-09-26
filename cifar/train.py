@@ -448,7 +448,8 @@ if __name__ == '__main__':
     base_lr = optimizer.param_groups[0]['lr']
     base_a = args.a
 
-    print(f'\nNum Epochs: {settings.EPOCH}\n')
+    settings.EPOCH = 200
+    
     for epoch in range(0, settings.EPOCH+1):
         if args.decay == 's':
             train_scheduler.step(epoch)
