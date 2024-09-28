@@ -1,2 +1,3 @@
 cifar/data/
+cifar/models/trained/
 *.gz

@@ -252,7 +252,7 @@ if __name__ == '__main__':
     parser.add_argument('--g', default=2, type=float,help='gamma for focal loss')
 
     parser.add_argument('--sch', type=float, default=2.5, 
-                        help='learning schedule scaling, default 2.5: 500 epochs')
+                        help='learning schedule scaling, default 2.5: 500 epochs')                  # WHAT IS IT FOR other EPOCHS?
     
     parser.add_argument('--decay', default='c', 
                         help='Step (s), Linear(l), or Cosine(c) annealing scheduler')
@@ -278,6 +278,10 @@ if __name__ == '__main__':
 
     parser.add_argument('--no-soften', action='store_false', default=True, dest="soften_one_hot", 
                         help='whether to soften one hot targets')
+    
+    """MODIFICATION"""
+    parser.add_argument('--epoch', type=int, default=200, help='number of epochs')
+    """MODIFICATION"""
 
 
 
