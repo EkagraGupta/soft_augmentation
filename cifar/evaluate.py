@@ -11,7 +11,7 @@ cifar10_testloader = get_test_dataloader(mean, std, batch_size=128, task='cifar1
 
 model = wideresnet28d3(num_classes=10)
 # Load the model
-PATH = '/home/ekagra/personal/soft_augmentation/cifar/models/trained/wideresnet28-cifar10-200-regular.pth'
+PATH = '/home/ekagra/personal/soft_augmentation/cifar/models/trained/wideresnet28-cifar10-200-sa.pth'
 state_dict = torch.load(PATH, map_location=torch.device('cpu'))
 # Create a new state dict without 'module.' prefix
 new_state_dict = {}
